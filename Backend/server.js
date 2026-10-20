@@ -1,5 +1,10 @@
-import express, { json } from "express";
+import express from "express";
 import taskRoutes from "./routes/task_route.js";
+import connectDB from "./config/db.js";
+import "dotenv/config"
+
+const PORT=process.env.PORT||3000;
+await connectDB();
 
 const app = express();
 
@@ -11,6 +16,6 @@ app.get("/api/v1/", (req, res) => {
 
 app.use("/api/v1/tasks", taskRoutes);
 
-app.listen(3000, () => {
-  console.log(`Server is Listening on ${'http://localhost:3000/api/v1/'}`);
+app.listen(PORT, () => {
+  console.log(`Server is Listening on http://localhost:${PORT}/api/v1/`);
 });
